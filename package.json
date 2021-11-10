@@ -1,0 +1,15 @@
+{
+  "name": "koohii-tracker",
+  "version": "1.0.0",
+  "description": "wenn felix seine kanjis nicht macht -> BESUCHEN UND PAINIGEN",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jsdom": "^18.0.1",
+    "node-schedule": "^2.0.0"
+  }
+}
