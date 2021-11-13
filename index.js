@@ -9,7 +9,7 @@ const kanjiList = "一 二 三 四 五 六 七 八 九 十 口 日 月 田 目 �
 
 let updateFelix = () => {
     JSDOM.fromURL("https://kanji.koohii.com/profile/Rockoro", {}).then((dom) => {
-        let rawdata = fs.readFileSync('felix.json');
+        let rawdata = fs.readFileSync('/home/pi/koohii-tracker/felix.json');
         let koohii = JSON.parse(rawdata);
         let table = dom.window.document.querySelector("#main_container > table");
         let kanjis = table.querySelector("tbody > tr:nth-child(2) > td > strong").innerHTML;
@@ -27,7 +27,7 @@ let updateFelix = () => {
 
         if (koohii.koohii.data[koohii.koohii.data.length - 2].reviews != koohii.koohii.data[koohii.koohii.data.length - 1].reviews) {
             if (koohii.koohii.data[koohii.koohii.data.length - 2].kanjis != koohii.koohii.data[koohii.koohii.data.length - 1].kanjis) {
-                fs.writeFile("felix.json", JSON.stringify(koohii), 'utf8', function (err) {
+                fs.writeFile("/home/pi/koohii-tracker/felix.json", JSON.stringify(koohii), 'utf8', function (err) {
                     if (err) {
                         console.log("An error occured while writing JSON Object to File.");
                         return console.log(err);
@@ -36,7 +36,6 @@ let updateFelix = () => {
                 });
             }
         } else {
-            console.log("nothing changed");
         }
     });
 };
@@ -71,6 +70,10 @@ bot.hears('/kanjis', ctx => {
         // ctx.deleteMessage();
         bot.telegram.sendMessage(ctx.chat.id, felix);
     });
+});
+
+bot.hears('/json', ctx => {
+    ctx.replyWithDocument({source:"/home/pi/koohii-tracker/felix.json"});
 });
 
 bot.launch();
