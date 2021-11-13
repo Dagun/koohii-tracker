@@ -63,7 +63,7 @@ bot.hears('/kanjis', ctx => {
         let kanjis = table.querySelector("tbody > tr:nth-child(2) > td > strong").innerHTML;
         let reviews = table.querySelector("tbody > tr:nth-child(3) > td").innerHTML;
         let lastLogin = table.querySelector("tbody > tr:nth-child(5) > td").innerHTML;
-        let felix = `Felix currently knows ${kanjis} Kanjis. These are the Kanjis he knows!\n`;
+        let felix = `Felix currently knows ${kanjis} Kanjis. These are the Kanjis he knows:\n`;
         for(let i = 0; i < kanjis; i++){
             felix = felix.concat(kanjiList[i]);
             
