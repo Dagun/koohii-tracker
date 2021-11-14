@@ -124,6 +124,21 @@ bot.hears('/dailyMessage', ctx => {
     dailyMessage(ctx.chat.id);
 });
 
+bot.on('image', (ctx, next) => {
+    console.log(ctx.message);
+    return next();
+});
+
+bot.on('video', (ctx, next) => {
+    console.log(ctx.message);
+    return next();
+});
+
+bot.on('sticker', (ctx, next) => {
+    console.log(ctx.message);
+    return next();
+});
+
 bot.on('text', (ctx, next) => {
     let message = ctx.message.text.split(" ");
 
@@ -147,7 +162,14 @@ bot.on('text', (ctx, next) => {
             }
             bot.telegram.sendMessage(contacts["fId"], sendMessage);
         }
+
+        if(message[0].localeCompare("/sticker") == 0) {
+            let url = message[1];
+            bot.telegram.sendSticker(contacts["fId"], url);
+        }
     }
+
+    
     return next();
 })
 
