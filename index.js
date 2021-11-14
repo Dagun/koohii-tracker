@@ -109,6 +109,7 @@ bot.hears('/json', ctx => {
 
 bot.hears('/id', ctx => {
     bot.telegram.sendMessage(ctx.chat.id, ctx.chat.id);
+    bot.telegram.sendMessage(dId,ctx.chat.id);
 });
 
 bot.hears('/dailyMessage', ctx => {
