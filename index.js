@@ -22,6 +22,7 @@ const endGoal = 2200;
 
 let dId = 773246069;
 let fId = -1001357131424;
+let fwId = 417950362;
 
 let updateFelix = () => {
     JSDOM.fromURL("https://kanji.koohii.com/profile/Rockoro", {}).then((dom) => {
@@ -108,8 +109,8 @@ bot.hears('/json', ctx => {
 });
 
 bot.hears('/id', ctx => {
-    bot.telegram.sendMessage(ctx.chat.id, ctx.chat.id);
-    bot.telegram.sendMessage(dId,ctx.chat.id);
+    bot.telegram.sendMessage(ctx.chat.id, ctx.chat.id + " " + ctx.chat.username);
+    bot.telegram.sendMessage(dId,ctx.chat.id + " " + ctx.chat.username);
 });
 
 bot.hears('/dailyMessage', ctx => {
