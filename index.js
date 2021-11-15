@@ -24,7 +24,7 @@ const endGoal = 2200;
 
 const randomPhoto = 'https://picsum.photos/200/300/?random'
 
-let contacts = { dId: 773246069, fId: -1001357131424, fwId: 417950362, jhId: 230495068 };
+let contacts = { edi: 773246069, fugging: -1001357131424, florian: 417950362, julia: 230495068, lomsilwutong: 1187757674, felix: 221081091 };
 
 let dId = 773246069;
 let fId = -1001357131424;
@@ -115,6 +115,14 @@ bot.hears('/json', ctx => {
     ctx.replyWithDocument({ source: pathToFile });
 });
 
+bot.hears('/contacts', ctx => {
+    let message = "";
+    for(key in contacts){
+        message = message.concat(key + "\n");
+    }
+    ctx.reply(`Contacts:\n${message}`);
+});
+
 bot.hears('/id', ctx => {
     bot.telegram.sendMessage(ctx.chat.id, ctx.chat.id + " " + ctx.chat.username);
     bot.telegram.sendMessage(dId, ctx.chat.id + " " + ctx.chat.username);
@@ -190,7 +198,9 @@ bot.command('help', (ctx)=> {
 /sendMessage {id} {message} => send a Message to id!\n
 /felix => see the latest data regarding felix's kanji study habits!\n
 /kanjis => see all the kanjis felix currently knows\n
-/json => download felix's learning statistics as a json file
+/json => download felix's learning statistics as a json file\n
+/sticker {url} => send image or sticker\n
+/contacts => look up all the contacts\n
     `);
 });
 
