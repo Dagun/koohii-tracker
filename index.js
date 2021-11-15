@@ -161,7 +161,11 @@ bot.on('text', (ctx, next) => {
             }
         }
 
-        if(message[0].localeCompare("/random+")==0) {
+        if(message[0].localeCompare("/random")==0) {
+            if(message.length < 2){
+                message[1] = 500;
+                message[2] = 500;
+            }
             if(typeof message[1].localeCompare("number") && typeof message[2].localeCompare("number")){
                 photo = `https://picsum.photos/${message[1]}/${message[2]}/?random`;
                 ctx.replyWithPhoto({ url: photo });
@@ -199,7 +203,7 @@ bot.command('help', (ctx)=> {
     ctx.reply(`Commandlist:\n
 /help => this menu pops up!\n
 /anonym => send anonymous messages!\n
-/random => sends a random image!\n
+/random {size_x optional} {size_y optional} => sends a random image!\n
 /id => get your id!\n
 /sendMessage {id} {message} => send a Message to id!\n
 /felix => see the latest data regarding felix's kanji study habits!\n
