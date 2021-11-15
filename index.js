@@ -160,6 +160,13 @@ bot.on('text', (ctx, next) => {
                 bot.telegram.sendMessage(contacts[message[1]], sendMessage);
             }
         }
+
+        if(message[0].localeCompare("/random+")==0) {
+            if(typeof message[1].localeCompare("number") && typeof message[2].localeCompare("number")){
+                photo = `https://picsum.photos/${message[1]}/${message[2]}/?random`;
+                ctx.replyWithPhoto({ url: photo });
+            }
+        }
     }
 
     if (message[1] != undefined) {
@@ -168,12 +175,12 @@ bot.on('text', (ctx, next) => {
             for (let i = 1; i < message.length; i++) {
                 sendMessage = sendMessage.concat(message[i] + " ");
             }
-            bot.telegram.sendMessage(contacts["fId"], sendMessage);
+            bot.telegram.sendMessage(contacts["fugging"], sendMessage);
         }
 
         if(message[0].localeCompare("/sticker") == 0) {
             let url = message[1];
-            bot.telegram.sendSticker(contacts["fId"], url);
+            bot.telegram.sendSticker(contacts["fugging"], url);
         }
     }
 
@@ -187,7 +194,6 @@ bot.on('text', (ctx, next) => {
 // )
 
 // Streaming photo, in case Telegram doesn't accept direct URL
-bot.command('random', (ctx) => ctx.replyWithPhoto({ url: randomPhoto }))
 
 bot.command('help', (ctx)=> {
     ctx.reply(`Commandlist:\n
@@ -217,7 +223,7 @@ let milestone = (id, skip) => {
         if (kanjis % mileStoneCounter == 0 || skip) {
             felix = felix.concat(kanjis, " Kanjis erreicht!");
             if (id == undefined) {
-                bot.telegram.sendMessage(dId, felix);
+                bot.telegram.sendMessage(contacts["edi"], felix);
             } else {
                 bot.telegram.sendMessage(id, felix);
             }
@@ -253,7 +259,7 @@ let dailyMessage = (id, skip) => {
             if (dailyKanjis > 10 || skip) {
                 felix = felix.concat(dailyKanjis - 10, " extra Kanjis more than needed today");
                 if (id == undefined) {
-                    bot.telegram.sendMessage(dId, felix);
+                    bot.telegram.sendMessage(contacts["edi"], felix);
                 } else {
                     bot.telegram.sendMessage(id, felix);
                 }
@@ -271,8 +277,8 @@ const job = schedule.scheduleJob('* */5 * * * *', function () {
 });
 
 const dailyMessageJob = schedule.scheduleJob('* * 20 * * *', function () {
-    milestone(fId);
-    dailyMessage(fId);
+    milestone(contacts["fugging"]);
+    dailyMessage(contacts["fugging"]);
 });
 
 process.once('SIGINT', () => bot.stop('SIGINT'))
